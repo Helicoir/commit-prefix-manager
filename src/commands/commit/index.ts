@@ -28,7 +28,7 @@ export default class Commit extends Command {
       // const title = `${answer.gitmoji} ${answer.title}`;
       // const body = `${answer.message}`;
 
-      const result = await this.commit("a", "b");
+      const result = await this.commit("test commit", "b");
       this.log(result);
     } catch (e) {
       this.errorMessage(e);
@@ -36,7 +36,7 @@ export default class Commit extends Command {
   }
 
   private async commit(title: string, message?: string) {
-    const currentBranchName = this.getCurrentBranchName();
+    const currentBranchName = await this.getCurrentBranchName();
     const commitMessage = `${currentBranchName}${divider}${title}`;
     const commitPayload = ["commit", "-m", commitMessage];
     if (message) {
